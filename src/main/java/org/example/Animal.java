@@ -3,6 +3,7 @@ package org.example;
 public class Animal {
     private String name;
     private int age;
+    private String commands;
 
     public Animal(String name, int age) {
         this.name = name;
@@ -26,6 +27,13 @@ public class Animal {
     }
 
 
+    public String getCommands() {
+        return commands;
+    }
+
+    public void setCommands(String commands) {
+        this.commands = commands;
+    }
 }
 
 

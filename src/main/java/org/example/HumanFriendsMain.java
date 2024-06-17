@@ -4,70 +4,111 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PetReg {
-    private List<Animal> pets = new ArrayList<>();
+public class HumanFriendsMain {
+    private static List<Pets> pets = new ArrayList<>();
+    private static List<PackAnimal> packAnimals = new ArrayList<>();
 
     public void addPet() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter pet type (Dog/Cat):");
+        System.out.println("Enter pet type (Pet/Pack):");
         String type = scanner.nextLine();
 
-        System.out.println("Enter pet name:");
+        System.out.println("Enter animal name:");
         String name = scanner.nextLine();
 
-        System.out.println("Enter pet age:");
+        System.out.println("Enter animal age:");
         int age = scanner.nextInt();
         scanner.nextLine();
-
+/*
         if (type.equalsIgnoreCase("Dog")) {
             System.out.println("Enter dog breed:");
             String breed = scanner.nextLine();
             pets.add(new Dog(name, age, breed));
+
         } else if (type.equalsIgnoreCase("Cat")) {
             System.out.println("Enter cat color:");
             String color = scanner.nextLine();
             pets.add(new Cat(name, age, color));
+
+        } else*/
+        if (type.equalsIgnoreCase("Pet")) {
+            System.out.println("Enter pet breed:");
+            String breed = scanner.nextLine();
+            pets.add(new Pets(name, age, breed));
+
+        } else if (type.equalsIgnoreCase("Pack")) {
+            System.out.println("Enter load capacity:");
+            int loadCapacity = scanner.nextInt();
+            scanner.nextLine();
+            packAnimals.add(new PackAnimal(name, age, loadCapacity));
         } else {
             System.out.println("Invalid pet type.");
         }
+        /*
         try (Counter counter = new Counter()) {
             counter.add();
             // ... (Rest of the code)
         } catch (Exception e) {
             System.err.println("Error using Counter: " + e.getMessage());
-        }
+        }*/
     }
 
 
     public void showCommands(Animal pet) {
         System.out.println("Commands for " + pet.getName() + ":");
         System.out.println("1. Make sound");
-        // Add more commands as needed
+        System.out.println("2. Take five");
+        System.out.println("3. Jump");
+
     }
 
-    public void trainPet(Animal pet) {
+    public void trainPet(Pets pet) {
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter new command:");
         String command = scanner.nextLine();
-        // Implement logic to add command to pet's command list
+
+        pet.commands.add(command);
+
+        System.out.println("Command added successfully.");
     }
 
     public void showPets() {
         if (pets.isEmpty()) {
             System.out.println("No pets registered yet.");
             return;
-        }
+        } else {
 
-        for (Animal pet : pets) {
-            System.out.println("Name: " + pet.getName() + ", Age: " + pet.getAge());
-            // Display additional pet details based on type
+            System.out.println("Registered pets:");
+            for (Animal pet : pets) {
+                System.out.println("Name: " + pet.getName() + ", Age: " + pet.getAge());
+                // Display additional pet details based on type
+            }
+        }
+        if(packAnimals.isEmpty()) {
+            System.out.println("No pets registered yet.");
+        } else {
+            System.out.println("Registered pets:");
+            for (PackAnimal pet : packAnimals) {
+                System.out.println("Name: " + pet.getName() + ", Age: " + pet.getAge() + ", Load Capacity: " + pet.getLoadСapacity());
+            }
+        }
+    }
+    //3 Select pet and show commands
+    private static void SelectPatAndCommand() {
+        for (Pets pet : pets) {
+            System.out.println("Name: " + pet.getName() + ", Age: " + pet.getAge() + ", Breed: " + pet.getBreed() + ", Commands: " + pet.getCommands());
+        }
+        for(PackAnimal packAnimal : packAnimals) {
+            System.out.println("Name: " + packAnimal.getName() + ", Age: " + packAnimal.getAge() + ", Load Capacity: " + packAnimal.getLoadСapacity() + ", Commands: " + packAnimal.getCommands());
         }
     }
 
+
     public static void main(String[] args) {
-        PetReg registry = new PetReg();
+        HumanFriendsMain registry = new HumanFriendsMain();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -90,7 +131,7 @@ public class PetReg {
                     registry.showPets();
                     break;
                 case 3:
-                    // Implement logic to select pet and show commands
+                    SelectPatAndCommand();
                     break;
                 case 4:
                     // Implement logic to select pet and train it
@@ -104,5 +145,6 @@ public class PetReg {
             }
         }
     }
+
 }
 
