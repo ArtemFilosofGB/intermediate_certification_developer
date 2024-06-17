@@ -1,10 +1,16 @@
 package org.example;
 
-public class Dog extends Animal {
+public class Dog extends Pets {
     private String breed;
 
-    public Dog(String name, int age, String breed) {
-        super(name, age);
+    public Dog(String name, int age, String type) {
+        super(name, age, type);
+        this.breed = breed;
+    }
+
+
+    public Dog(String name, int age, String type, String breed) {
+        super(name, age, type);
         this.breed = breed;
     }
 

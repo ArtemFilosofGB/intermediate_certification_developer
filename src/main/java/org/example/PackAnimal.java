@@ -7,4 +7,12 @@ public class PackAnimal extends Animal{
         super(name, age);
         this.LoadСapacity = LoadСapacity;
     }
+
+    public String getLoadСapacity() {
+        return LoadСapacity.toString();
+    }
+
+    public String getCommands() {
+        return super.getCommands() + ", Load Capacity: " + getLoadСapacity();
+    }
 }
