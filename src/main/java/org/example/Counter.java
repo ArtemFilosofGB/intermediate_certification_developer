@@ -1,7 +1,14 @@
 package org.example;
 
 public class Counter implements AutoCloseable {
-    private int count;
+    private int count = 0;
+
+    @Override
+    public String toString() {
+        return "Counter{" +
+                "count=" + count +
+                '}';
+    }
 
     public void add() {
         count++;
